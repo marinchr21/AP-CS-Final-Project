@@ -72,12 +72,27 @@ public void createDog() {
   
   System.out.print("Enter Dog Weight: ");
   dogWeight = scan.nextInt();
+}
 
- 
+ public void dogYears() {
 
+  if (dogAge == 1) {
+    System.out.print("Your Dog would be about 15 Years old in Human Years");
+  }
+  else if(dogAge == 2) {
+    dogAge = 24;
+    System.out.println("Your dog is " + dogAge + " years old in Human Years");
+  }
+  else if (dogAge >= 3){
+    int extra = (dogAge - 2);
+    dogAge = 24 + (extra * 4);
+     System.out.println("Your dog is " + dogAge + " years old in Human Years");
+  }
+  else {
+    System.out.println("Choose Valid Age");
+  }
+  }
 
-  
 }
 
 
-}

@@ -71,9 +71,25 @@ public void createCat() {
   
   System.out.print("Enter Cat Weight: ");
   catWeight = scan.nextInt();
-
- 
- 
 }
+
+ public void catYears() {
+
+  if (catAge == 1) {
+    System.out.print("Your cat would be about 15 Years old in Human Years");
+  }
+  else if(catAge == 2) {
+    catAge = 24;
+    System.out.println("Your cat is " + catAge + " years old in Human Years");
+  }
+  else if (catAge >= 3){
+    int extra = (catAge - 2);
+    catAge = 24 + (extra * 4);
+     System.out.println("Your cat is " + catAge + " years old in Human Years");
+  }
+  else {
+    System.out.println("Choose Valid Age");
+  }
+  }
 
 }

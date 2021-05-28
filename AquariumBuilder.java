@@ -9,19 +9,31 @@ public class AquariumBuilder {
 	
 private String tankSize;
 private String tankType; 
+
+private String filterType;
+private String filterBrand; 
+private String filterSpecific;
+
 	
 	
 public AquariumBuilder() {
 	
 	tankSize = " ";
 	tankType = "xx";	
+	
+	filterType = " ";
+	filterBrand = " ";	
+	filterSpecific = " ";
 
 } //close public Aquarium Builder
 
-	public AquariumBuilder(String tankSize, String tankType) {
+	public AquariumBuilder(String tankSize, String tankType, String filterType, String filterBrand, String filterSpecific) {
 
 	this.tankSize = tankSize;
 	this.tankType = tankType;
+	this.filterType = filterType;
+	this.filterBrand = filterBrand;
+	this.filterSpecific = filterSpecific;
 	}
 
 	
@@ -39,6 +51,27 @@ public AquariumBuilder() {
 	public String getTankType() {
 	  return tankType;
 	}
+	
+	public void setfilterType(String filterType) {
+		  this.filterType = filterType;
+		}
+		public void setfilterBrand(String filterBrand) {
+		  this.filterBrand = filterBrand;
+		}
+		public void setfilterSpecific(String filterSpecific) {
+			this.filterSpecific = filterSpecific;
+		}
+
+		
+		public String getfilterType() {
+		  return filterType;
+		}
+		public String getfilterBrand() {
+		  return filterBrand;
+		}
+		public String getfilterSpecific() {
+			return filterSpecific;
+		}
 	
 
 	
@@ -119,7 +152,7 @@ public AquariumBuilder() {
 		        
 		        
 		        f7.setVisible(false); //hides frame
-		        inhabitants(); //calls inhabitants
+		        filtration(); //calls inhabitants
 		        
 		        }  
 		     }); //close b1 action listener
@@ -133,6 +166,115 @@ public AquariumBuilder() {
 	}// close public void BuilderSelect
 	
 	
+	public void filtration() {
+		
+		//creates new frame and Titles Headers
+		JFrame f7 = new JFrame("Filtration");
+
+		//Menu
+		JMenu menu;  
+			JMenuItem i1;  
+			JMenuBar mb=new JMenuBar();  
+			menu = new JMenu("Menu");    
+			i1 = new JMenuItem("Home");  
+			menu.add(i1);
+			mb.add(menu);  
+			f7.setJMenuBar(mb);  
+				
+			//menu home button
+			i1.addActionListener(new ActionListener(){  
+				public void actionPerformed(ActionEvent e){  
+					f7.setVisible(false);
+					Home home = new Home();
+				  }  
+				});
+		
+		//create Labels on each page
+		JLabel l1 = new JLabel("Select a Filter Type");
+		l1.setBounds(25,10,200,30);  
+		f7.add(l1); 
+		
+		//string array for combo box drop down
+		String type[]={"Hang on Back Filter", "Canister Filter", "Sump Filter", "Undergravel Filter"
+				,"Sponge Flter", "In-Tank Filter", "UV Filter Only", "Airstone Only"};    
+		
+		String brand[] = {"DIY", "Fluval", "AquaClear", "Marineland", "Aqueon", "Tetra", "API", "AquaticLife"
+				,"Penn-Plax", "Aqua-Tech", "SunSun", "Nicrew","Trigger Systems", "EShopps", "Fiji", "BubbleFin",
+				"CoraLife" };
+		
+		//creates combo box
+	    JComboBox cb = new JComboBox(type);  
+	    JComboBox cb2 = new JComboBox(brand);
+	    cb.setBounds(25,50,250,30); 
+	    cb2.setBounds(25, 130, 250, 30);
+	    f7.add(cb);
+	    f7.add(cb2);
+	    
+	    
+	    
+		//create Labels on each page
+		JLabel l2 = new JLabel("Select a Filter Brand");
+		l2.setBounds(25,90,200,30);  
+		f7.add(l2); 
+	    
+	    
+		//create Labels on each page
+		JLabel l3 = new JLabel("Enter a Specific Model");
+		l3.setBounds(25,190,200,30);  
+		f7.add(l3); 
+	  
+		JLabel l4 = new JLabel("Model Name:");    
+	    l4.setBounds(25, 230, 100,30); 	    
+	    
+	    //text field
+	    JTextField t1 = new JTextField();  
+	    t1.setBounds(110, 230, 100, 30);  
+	    
+	    //adds to Jframe
+	    f7.add(l4);
+	    f7.add(t1);
+	    
+	  //enter button
+	    JButton b2 = new JButton("Enter");  
+	    b2.setBounds(25, 280, 150, 30);  
+	    f7.add(b2);
+	    
+	    //enter button action listener
+	    b2.addActionListener(new ActionListener() {  
+		    public void actionPerformed(ActionEvent e) {       
+		    	
+		    	
+		    	//sets filterType to selected item from drop down
+			    filterType = (String) cb.getItemAt(cb.getSelectedIndex());  
+
+			    //sets filterBrand to selected item from drop down
+			    filterBrand = (String) cb2.getItemAt(cb2.getSelectedIndex());
+			    
+			    //sets filterSpecific to text from text box
+			    filterSpecific = t1.getText();
+			    
+			    System.out.println("Filter Type: " + filterType);
+			    System.out.println("Filter Brand: " + filterBrand);
+			    System.out.println("Filter Model: " + filterSpecific);   
+			    
+			    f7.setVisible(false);
+			    inhabitants();
+			    
+	        }  
+	     }); //close b2 action listener
+	    
+	    
+		//set size of first page
+		f7.setSize(400, 500);
+		f7.setLayout(null);
+		// make the frame visible
+		f7.setVisible(true);
+	  
+	}// close public void FilterType
+
+
+		
+
 	
 	public void inhabitants() {
 		
@@ -450,21 +592,21 @@ public AquariumBuilder() {
 			    //fish 1 represents the vertical chart and fish 2 is horizontal chart
 			    //compatible group for column 1
 			    if( (fish1 == fresh[0] || fish1 == fresh[19]) && fish2 == freshcomp[0] ) {
-			    	System.out.print(fish1 + " and " + fish2 + " are Compatible!");
+			    	System.out.println(fish1 + " and " + fish2 + " are Compatible!");
 			    }
 			    //caution group for columns 1 and 2
 			    else if( (fish1 == fresh[1] || fish1 == fresh[2] || fish1 == fresh[3] || fish1 == fresh[5]
 			    		|| fish1 == fresh[7] || fish1 == fresh[15] || fish1 == fresh[16] || fish1 == fresh[22]
 			    		|| fish1 == fresh[23] || fish1 == fresh[26] || fish1 == fresh[27] || fish1 == fresh[30] )
 			    		&& ( fish2 == freshcomp[0] || fish2 == freshcomp[1] ) ) {
-			    	System.out.print(fish1 + " and " + fish2 + " are compatible with caution");
+			    	System.out.println(fish1 + " and " + fish2 + " are compatible with caution");
 			    }
 
 			    //caution group for column 3
 			    else if( (fish1 == fresh[3] || fish1 == fresh[5] || fish1 == fresh[7] || fish1 == fresh[15]
 			    		|| fish1 == fresh[16] || fish1 == fresh[22] || fish1 == fresh[23] || fish1 == fresh[26] ||
 			    		fish1 == fresh[27] || fish1 == fresh[30]) && ( fish2 == freshcomp[2] ) ){
-			    	System.out.print(fish1 + " and " + fish2 + " are compatible with caution");
+			    	System.out.println(fish1 + " and " + fish2 + " are compatible with caution");
 			    }
 			    
 			    //caution group for column 4
@@ -474,7 +616,7 @@ public AquariumBuilder() {
 			    		|| fish1 == fresh[18] || fish1 == fresh[20] || fish1 == fresh[21] || fish1 == fresh[22] 
 			    		|| fish1 == fresh[23] || fish1 == fresh[24] || fish1 == fresh[25] || fish1 == fresh[26] 
 			    		|| fish1 == fresh[27] || fish1 == fresh[28] || fish1 == fresh[30]) && ( fish2 == freshcomp[3] ) ){
-			    	System.out.print(fish1 + " and " + fish2 + " are compatible with caution");
+			    	System.out.println(fish1 + " and " + fish2 + " are compatible with caution");
 			    }
 			    
 			    //if fish do not apply to above, then they are not compatible and this loop executes

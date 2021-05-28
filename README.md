@@ -1,1 +1,5 @@
 Pet data tracker and interface to create animal profiles. Users can alse build aquariums with all standard aquarium sizes, filtration brands, and inhabitants. 
+
+Currently, I have created a program where the user is able to create custom profiles for several animals. This data is saved locally on the users machine. Additionally, I have created a space where the user can design and set up an aquarium that includes tank sies, filtration types, and every brand of filter on the market today. Additionally, I have created a custom compatability calculator which compares the two species of fish selected by the user, and displays if the two fish are compatible or not. This part of the project is still a bit of a work in progress though.
+
+This project has been quite a large undertaking, and is still a work in progress. As of now, I have achieved all of the large pieces that I origionally set out to complete. I will keep working on this project in the future and expanding its capabilities, and the next step is making a user interface where the various pet profiles can be viewed.
